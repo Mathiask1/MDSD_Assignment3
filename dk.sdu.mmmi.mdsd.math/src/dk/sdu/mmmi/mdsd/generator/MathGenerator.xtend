@@ -16,10 +16,6 @@ import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.AbstractGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
-import java.io.File
-import java.util.ArrayList
-import java.util.List
-import dk.sdu.mmmi.mdsd.math.Expression
 import java.util.HashMap
 import dk.sdu.mmmi.mdsd.math.External
 import dk.sdu.mmmi.mdsd.math.ExternalUse
@@ -135,12 +131,9 @@ class MathGenerator extends AbstractGenerator {
 		"public int " + exp.name +  '''(«IF exp.parameters.size == 1»int n«ENDIF»«IF exp.parameters.size == 2»int n, int m«ENDIF»)''' 
 	}
 	
-
-	
 	def static dispatch String computeExpression(ExternalUse exp){
 		'''this.external.'''+ exp.ref.name + '''(«FOR x : exp.args SEPARATOR ', '» «x.computeExpression» «ENDFOR»)''' 
 	}
-	
 		
 	def void displayPanel(Map<String, Integer> result) {
 		var resultString = ""
